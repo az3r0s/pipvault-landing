@@ -19,7 +19,13 @@ function FAQItem({
   onClick: () => void;
 }) {
   return (
-    <div className="border border-gray-800 rounded-xl bg-gray-900/50 overflow-hidden transition-all duration-300">
+    <motion.div
+      className="border border-gray-800 rounded-xl bg-gray-900/50 overflow-hidden transition-all duration-300"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
       <button
         onClick={onClick}
         className="w-full flex justify-between items-center p-5 text-left hover:bg-gray-900 transition-colors"
@@ -27,20 +33,21 @@ function FAQItem({
         <span className="font-semibold text-gray-100 text-lg">{question}</span>
         <span className="text-emerald-400 text-2xl">{isOpen ? "−" : "+"}</span>
       </button>
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={false} mode="sync">
         {isOpen && (
           <motion.div
+            key="content"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="px-5 pb-5 text-gray-300 text-sm sm:text-base border-t border-gray-800"
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="px-5 pb-5 text-gray-300 text-sm sm:text-base border-t border-gray-800 will-change-transform"
           >
-            {answer}
+            <div className="pt-3">{answer}</div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }
 
@@ -80,7 +87,6 @@ export default function LandingPage() {
     <main className="bg-black text-white min-h-screen flex flex-col font-sans scroll-smooth">
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
-        {/* Animated Glow Behind OG Image */}
         <motion.div
           className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-emerald-500 opacity-20 blur-3xl"
           animate={{
@@ -94,7 +100,6 @@ export default function LandingPage() {
           }}
         />
 
-        {/* OG Image with subtle pulse */}
         <motion.img
           src="/og-image.png"
           alt="PipVault Branding"
@@ -107,13 +112,11 @@ export default function LandingPage() {
           }}
         />
 
-        {/* Title and tagline */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4 relative z-10">
           PipVault:{" "}
           <span className="text-emerald-400">Your Path to Prosperity</span>
         </h1>
 
-        {/* Video Placeholder Section */}
         <div className="w-full max-w-2xl mb-12">
           <div className="relative aspect-video bg-gray-800 rounded-xl flex items-center justify-center border border-gray-700 hover:border-emerald-500 transition-colors cursor-pointer">
             <div className="flex flex-col items-center justify-center text-center">
@@ -152,7 +155,6 @@ export default function LandingPage() {
           <span className="font-semibold text-emerald-400">Vantage</span>.
         </p>
 
-        {/* CTA Text */}
         <motion.p
           className="text-lg font-semibold text-emerald-400 mt-6 mb-3 animate-bounce relative z-10"
           initial={{ opacity: 0 }}
@@ -162,7 +164,6 @@ export default function LandingPage() {
           👇 Tap here to start now
         </motion.p>
 
-        {/* Discord Button */}
         <a
           href="https://discord.gg/3EAgVbYhEz"
           target="_blank"
@@ -270,7 +271,7 @@ export default function LandingPage() {
           className="text-3xl sm:text-4xl font-extrabold text-center mb-12 bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-500 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           💡 Frequently Asked Questions
@@ -326,12 +327,10 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-8 text-center text-gray-500 text-sm bg-gray-950">
         © {new Date().getFullYear()} PipVault. All rights reserved.
       </footer>
 
-      {/* Typeform Modal */}
       <TypeformModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
