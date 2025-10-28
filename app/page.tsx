@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { useState, useEffect } from "react";
 import { TypeformModal } from "@/components/TypeformModal";
 
 /* FAQ Component */
@@ -47,7 +47,7 @@ function FAQItem({
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="px-5 pb-5 text-gray-300 text-sm sm:text-base border-t border-gray-800 will-change-transform"
+            className="px-5 pb-5 text-gray-300 text-sm sm:text-base border-t border-gray-800"
           >
             <div className="pt-3">{answer}</div>
           </motion.div>
@@ -61,12 +61,26 @@ function FAQItem({
 export default function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const controls = useAnimation();
 
   const toggleFAQ = (i: number) => {
     setOpenFAQ(openFAQ === i ? null : i);
   };
 
-  /* FAQ Data */
+  /* Auto-scroll effect for results carousel */
+  useEffect(() => {
+    const animate = async () => {
+      while (true) {
+        await controls.start({
+          x: ["0%", "-50%"],
+          transition: { duration: 25, ease: "linear" },
+        });
+        await controls.start({ x: "0%", transition: { duration: 0 } });
+      }
+    };
+    animate();
+  }, [controls]);
+
   const faqs = [
     {
       question: "How do I start and what is needed?",
@@ -107,14 +121,11 @@ export default function LandingPage() {
       {/* 1. HERO + ABOUT YOU SECTION */}
       {/* ========================== */}
       <section className="relative flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
-        {/* Animated Glow */}
         <motion.div
           className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-emerald-500 opacity-20 blur-3xl"
           animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.35, 0.2] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
-
-        {/* Branding Image */}
         <motion.img
           src="/og-image.png"
           alt="PipVault Branding"
@@ -122,13 +133,11 @@ export default function LandingPage() {
           animate={{ scale: [1, 1.02, 1] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
-
-        {/* Title */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
           Automate Your Trading. Elevate Your Income.
         </h1>
 
-        {/* === Video Placeholder (Re-added) === */}
+        {/* === Video Placeholder === */}
         <div className="w-full max-w-2xl mb-10 relative z-10">
           <div className="aspect-video bg-gray-800 rounded-xl flex items-center justify-center border border-gray-700 hover:border-emerald-500 transition-colors cursor-pointer">
             <div className="flex flex-col items-center justify-center text-center">
@@ -158,18 +167,16 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* About Text */}
         <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-6 leading-relaxed relative z-10">
           I'm <span className="font-semibold text-emerald-400">Aidan</span>, a
-          digital entrepreneur with a background in software engineering and a
+          digital entrepreneur with a background in software engineering and business, and a
           passion for trading. After multiple ventures that didn’t work out, I
           found a system that’s profitable, scalable, and accessible — and I’m
-          on a mission to share it. Through PipVault, I mentor traders,
+          on a mission to share it. As a founder of PipVault, I mentor traders,
           entrepreneurs, and creators to master markets, mindset, and
           automation.
         </p>
 
-        {/* CTA */}
         <motion.p
           className="text-lg font-semibold text-emerald-400 mt-6 mb-3 animate-bounce relative z-10"
           initial={{ opacity: 0 }}
@@ -266,38 +273,45 @@ export default function LandingPage() {
       {/* 3. RESULTS SECTION */}
       {/* ========================== */}
       <motion.section
-        className="py-20 px-6 md:px-20 bg-gradient-to-b from-gray-950 to-black text-center overflow-hidden"
+        className="relative py-20 px-6 md:px-20 bg-gradient-to-b from-gray-950 to-black text-center overflow-hidden"
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
+        {/* Parallax Glow */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-[80%] h-[60%] bg-emerald-500/10 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400 relative z-10">
           💹 Real Results. Real Traders.
         </h2>
-        <p className="text-gray-300 max-w-3xl mx-auto mb-10 text-base sm:text-lg leading-relaxed">
+        <p className="text-gray-300 max-w-3xl mx-auto mb-10 text-base sm:text-lg leading-relaxed relative z-10">
           Proof over promises — here’s a look at some of the verified profits
           shared by our community members.
         </p>
 
+        {/* Auto-scroll Carousel */}
         <motion.div
-          className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-          whileInView={{ x: [100, 0] }}
-          transition={{ duration: 1 }}
+          className="flex gap-6 overflow-hidden max-w-6xl mx-auto relative z-10"
+          animate={controls}
         >
-          {[...Array(8)].map((_, i) => (
+          {[...Array(16)].map((_, i) => (
             <motion.div
               key={i}
-              className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm snap-center shadow-lg"
+              className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm shadow-lg mx-2"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              Screenshot Placeholder {i + 1}
-              {/* Replace with actual image e.g.
-              <img src="/results/result1.png" className="w-full h-full object-cover rounded-xl" /> */}
+              Screenshot Placeholder {(i % 8) + 1}
+              {/* Replace with: <img src="/results/result1.png" alt="Result" className="w-full h-full rounded-xl object-cover" /> */}
             </motion.div>
           ))}
         </motion.div>
-        <p className="text-gray-500 text-sm mt-4 italic">
+
+        <p className="text-gray-500 text-sm mt-4 italic relative z-10">
           (Replace placeholders with your 8 client profit screenshots)
         </p>
       </motion.section>
@@ -357,52 +371,51 @@ export default function LandingPage() {
           automation, and support — is handled by our internal team.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto mb-10 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto mb-12 text-left">
           <div>
-            <h3 className="text-2xl font-semibold text-emerald-400 mb-4">
-              What We Provide:
+            <h3 className="text-emerald-400 font-semibold mb-2">
+              💼 Why Become a Partner?
             </h3>
             <ul className="text-gray-300 space-y-2 text-sm sm:text-base">
-              <li>• Done-for-you <span className="text-emerald-400">Discord Group Setup</span></li>
-              <li>• Daily Content Posted (Trading wins, results, success stories)</li>
-              <li>• Step-by-Step <span className="text-emerald-400">Growth Guide</span></li>
-              <li>• Mentorship on Building Long-Term Passive Income</li>
+              <li>✅ Earn commissions from every active trader you bring</li>
+              <li>✅ Access mentorship from 6–7 figure entrepreneurs</li>
+              <li>✅ Leverage a proven system — no startup cost</li>
+              <li>✅ Work remotely and scale globally</li>
             </ul>
           </div>
-
           <div>
-            <h3 className="text-2xl font-semibold text-emerald-400 mb-4">
-              Your Role:
+            <h3 className="text-emerald-400 font-semibold mb-2">
+              📈 Who It’s For
             </h3>
             <ul className="text-gray-300 space-y-2 text-sm sm:text-base">
-              <li>• Stay authentic</li>
-              <li>• Post your lifestyle and daily updates</li>
-              <li>• Invite your audience to our pre-made Discord community</li>
-              <li>• Let the system and results <span className="text-emerald-400">do the talking</span></li>
+              <li>✅ Traders wanting passive income</li>
+              <li>✅ Influencers or community builders</li>
+              <li>✅ Ambitious individuals ready to grow online</li>
             </ul>
           </div>
         </div>
 
         <Button
           onClick={() => setIsModalOpen(true)}
-          className="bg-emerald-500 hover:bg-emerald-400 text-black text-lg font-bold px-8 py-4 rounded-xl shadow-lg w-full sm:w-auto"
+          className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-lg px-8 py-4 rounded-xl shadow-lg transition"
         >
-          💼 Apply to Become a Partner
+          Apply to Become a Partner
         </Button>
-
-        <p className="text-emerald-400 text-sm mt-4">
-          No experience needed — we'll train you personally.
-        </p>
       </motion.section>
 
       {/* ========================== */}
       {/* 6. FAQ SECTION */}
       {/* ========================== */}
-      <section className="py-20 px-6 md:px-20 bg-gray-950 text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-emerald-400">
+      <motion.section
+        className="py-20 px-6 md:px-20 bg-gray-950 text-center"
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 50 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
           ❓ Frequently Asked Questions
         </h2>
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="space-y-4 max-w-3xl mx-auto">
           {faqs.map((faq, i) => (
             <FAQItem
               key={i}
@@ -413,39 +426,29 @@ export default function LandingPage() {
             />
           ))}
         </div>
-        <p className="text-gray-400 mt-8 text-sm italic">
-          Still have questions? Jump in the{" "}
-          <a
-            href="https://discord.gg/3EAgVbYhEz"
-            className="text-emerald-400 underline hover:text-emerald-300"
-          >
-            Discord
-          </a>{" "}
-          — our team replies fast.
-        </p>
-      </section>
+      </motion.section>
 
       {/* ========================== */}
-      {/* FOOTER + CTA */}
+      {/* 7. FOOTER */}
       {/* ========================== */}
-      <footer className="py-8 text-center text-gray-500 text-sm bg-gray-950">
-        © {new Date().getFullYear()} PipVault. All rights reserved.
+      <footer className="py-10 text-center bg-black border-t border-gray-800">
+        <p className="text-gray-500 text-sm mb-2">
+          &copy; {new Date().getFullYear()} PipVault. All Rights Reserved.
+        </p>
+        <a
+          href="https://discord.gg/3EAgVbYhEz"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-emerald-400 hover:text-emerald-300 transition text-sm"
+        >
+          Join our Discord
+        </a>
       </footer>
 
-      <a
-        href="https://discord.gg/3EAgVbYhEz"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-5 py-3 rounded-full shadow-2xl hover:shadow-emerald-400/30 transition-all duration-300 z-50"
-      >
-        Join Discord 💬
-      </a>
-
-      <TypeformModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        typeformUrl="https://form.typeform.com/to/XT5ryUFU"
-      />
+      {/* ========================== */}
+      {/* 8. TYPEFORM MODAL */}
+      {/* ========================== */}
+      <TypeformModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   );
 }
