@@ -2,34 +2,79 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { TypeformModal } from "@/components/TypeformModal";
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
-  const [isOpen, setIsOpen] = useState(false);
+// Accordion-style FAQ item
+function FAQItem({
+  question,
+  answer,
+  isOpen,
+  onClick,
+}: {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onClick: () => void;
+}) {
   return (
-    <div
-      className="border border-gray-800 rounded-xl bg-gray-900/50 overflow-hidden transition-all duration-300"
-    >
+    <div className="border border-gray-800 rounded-xl bg-gray-900/50 overflow-hidden transition-all duration-300">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={onClick}
         className="w-full flex justify-between items-center p-5 text-left hover:bg-gray-900 transition-colors"
       >
         <span className="font-semibold text-gray-100 text-lg">{question}</span>
         <span className="text-emerald-400 text-2xl">{isOpen ? "−" : "+"}</span>
       </button>
-      {isOpen && (
-        <div className="px-5 pb-5 text-gray-300 text-sm sm:text-base border-t border-gray-800">
-          {answer}
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="px-5 pb-5 text-gray-300 text-sm sm:text-base border-t border-gray-800"
+          >
+            {answer}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
 export default function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "What if I know nothing about trading?",
+      answer:
+        "That’s completely fine! Our program is beginner-friendly and provides full training materials, guidance, and community support to help you learn everything from the ground up.",
+    },
+    {
+      question: "Why is it free?",
+      answer:
+        "Our broker partnership and sponsors cover the costs for us, so you don’t have to. Vantage (our official partner) is an award-winning trading platform that funds member access to our community. As long as you trade through Vantage with us, our education, support, and resources are completely free — making it a no-brainer.",
+    },
+    {
+      question: "How do I start and what is needed?",
+      answer:
+        "Joining is simple — just click the Discord invite link at the top of the page to get started. It’s completely free to join our community, and the only funds you’ll ever need are your own trading funds when you’re ready to start trading live.",
+    },
+    {
+      question: "How much money do I need to start?",
+      answer:
+        "Vantage has a minimum deposit of £50 to open a live trading account, but we generally recommend starting with at least £300 to make proper use of trade opportunities and risk management. Ultimately, the amount you start with is completely up to you.",
+    },
+    {
+      question: "What is the IB/Partner Program and how does it work?",
+      answer:
+        "The IB (Introducing Broker) or Partner Program is an opportunity to build genuine long-term passive income by partnering directly with PipVault. As an IB, you’ll earn substantial commissions for every trader you refer through your link — and because everything is automated on our end, your only focus is growing your personal brand and community. Many of our partners have scaled their referrals into 4–5 figure monthly incomes simply by promoting PipVault authentically through their social platforms.",
+    },
+  ];
 
   return (
     <main className="bg-black text-white min-h-screen flex flex-col font-sans scroll-smooth">
@@ -221,38 +266,19 @@ export default function LandingPage() {
 
       {/* FAQ Section */}
       <section id="faq" className="w-full max-w-3xl mx-auto mb-24 px-6">
-        <h2 className="text-3xl font-bold text-center mb-10 text-white">
-          Frequently Asked Questions
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-12 bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-500 bg-clip-text text-transparent animate-pulse">
+          💡 Frequently Asked Questions
         </h2>
+
         <div className="space-y-4">
-          {[
-            {
-              question: "What if I know nothing about trading?",
-              answer:
-                "That’s completely fine! Our program is beginner-friendly and provides full training materials, guidance, and community support to help you learn everything from the ground up.",
-            },
-            {
-              question: "Why is it free?",
-              answer:
-                "Our broker partnership and sponsors cover the costs for us, so you don’t have to. Vantage (our official partner) is an award-winning trading platform that funds member access to our community. As long as you trade through Vantage with us, our education, support, and resources are completely free - making it a no-brainer.",
-            },
-            {
-              question: "How do I start and what is needed?",
-              answer:
-                "Joining is simple - just click the Discord invite link at the top of the page to get started. It’s completely free to join our community, and the only funds you’ll ever need are your own trading funds when you’re ready to start trading live.",
-            },
-            {
-              question: "How much money do I need to start?",
-              answer:
-                "Vantage has a minimum deposit of £50 to open a live trading account, but we generally recommend starting with at least £300 to make proper use of trade opportunities and risk management. Ultimately, the amount you start with is completely up to you.",
-            },
-            {
-              question: "What is the IB/Partner Program and how does it work?",
-              answer:
-                "The IB (Introducing Broker) or Partner Program is an opportunity to build genuine long-term passive income by partnering directly with PipVault. As an IB, you’ll earn substantial commissions for every trader you refer through your link - and because everything is automated on our end, your only focus is growing your personal brand and community. Many of our partners have scaled their referrals into 4–5 figure monthly incomes simply by promoting PipVault authentically through their social platforms.",
-            },
-          ].map((item, index) => (
-            <FAQItem key={index} question={item.question} answer={item.answer} />
+          {faqs.map((item, index) => (
+            <FAQItem
+              key={index}
+              question={item.question}
+              answer={item.answer}
+              isOpen={openIndex === index}
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            />
           ))}
         </div>
       </section>
