@@ -448,7 +448,11 @@ export default function LandingPage() {
       {/* ========================== */}
       {/* 8. TYPEFORM MODAL */}
       {/* ========================== */}
-      <TypeformModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <TypeformModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        typeformUrl="https://form.typeform.com/to/XT5ryUFU"
+      />
     </main>
   );
 }
