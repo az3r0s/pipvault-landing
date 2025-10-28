@@ -193,7 +193,7 @@ export default function LandingPage() {
 
         {/* Social Proof */}
         <p className="text-gray-400 mt-4 text-sm">
-          💬 Over <span className="text-emerald-400 font-semibold">1,200+</span>{" "}
+          💬 Over <span className="text-emerald-400 font-semibold">100+</span>{" "}
           traders joined this month
         </p>
       </section>
