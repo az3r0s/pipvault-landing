@@ -68,27 +68,27 @@ export default function LandingPage() {
     {
       question: "How do I start and what is needed?",
       answer:
-        "Joining is simple and completely free. Just click the 'Join Discord' button at the top of the page, and you’ll be guided through setup. You’ll only need your own trading funds to get started — no sign-up fees or contracts.",
+        "Joining is simple and completely free. Just click the 'Join Discord' button at the top of the page, and you'll be guided through setup. You'll only need your own trading funds to get started — no sign-up fees or contracts.",
     },
     {
       question: "What if I know nothing about trading?",
       answer:
-        "That’s perfectly fine! PipVault was designed for beginners as much as advanced traders. You’ll receive educational resources, trade breakdowns, and community mentorship to help you learn step-by-step at your own pace.",
+        "That's perfectly fine! PipVault was designed for beginners as much as advanced traders. You'll receive educational resources, trade breakdowns, and community mentorship to help you learn step-by-step at your own pace.",
     },
     {
       question: "Why is it free?",
       answer:
-        "Our broker partnership and sponsors cover all our operational costs, so you don’t have to. Vantage, our official partner, is an award-winning trading platform that funds your access to the PipVault server. As long as you trade with us there, everything remains 100% free — making it a complete no-brainer.",
+        "Our broker partnership and sponsors cover all our operational costs, so you don't have to. Vantage, our official partner, is an award-winning trading platform that funds your access to the PipVault server. As long as you trade with us there, everything remains 100% free — making it a complete no-brainer.",
     },
     {
       question: "How much money do I need to start?",
       answer:
-        "Vantage has a minimum deposit of just £50, but we recommend starting with at least £300 for better flexibility and growth potential. You’re always in control of your funds, and how much you start with is entirely up to you.",
+        "Vantage has a minimum deposit of just £50, but we recommend starting with at least £300 for better flexibility and growth potential. You're always in control of your funds, and how much you start with is entirely up to you.",
     },
     {
       question: "What are the benefits of becoming a PipVault Partner?",
       answer:
-        "Our partners gain access to one of the most lucrative affiliate-style systems in trading. You’ll earn substantial commissions for every active client you bring in, with some members scaling to five figures per month in passive income. All you have to do is promote your personal brand — we handle the backend, mentorship, and automation.",
+        "Our partners gain access to one of the most lucrative affiliate-style systems in trading. You'll earn substantial commissions for every active client you bring in, with some members scaling to five figures per month in passive income. All you have to do is promote your personal brand — we handle the backend, mentorship, and automation.",
     },
     {
       question: "Can I trade and also become a Partner?",
@@ -129,7 +129,7 @@ export default function LandingPage() {
         />
 
         {/* Title and tagline */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
           Automate Your Trading. Elevate Your Income.
         </h1>
 
@@ -226,7 +226,7 @@ export default function LandingPage() {
         </ul>
 
         <p className="text-gray-400 mb-10 text-sm">
-          ❌ No setup costs • ❌ No monthly fees • ❌ No contracts ever
+          ✗ No setup costs • ✗ No monthly fees • ✗ No contracts ever
         </p>
       </motion.section>
 
@@ -296,7 +296,7 @@ export default function LandingPage() {
         </Button>
 
         <p className="text-emerald-400 text-sm mt-4">
-          No experience needed — we’ll train you personally.
+          No experience needed — we'll train you personally.
         </p>
       </motion.section>
 

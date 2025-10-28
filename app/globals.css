@@ -24,3 +24,41 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* === Animated Gradient Shimmer === */
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: shimmer 10s linear infinite;
+}
+
+/* === Diagonal Shimmer (Metallic Reflection) === */
+@keyframes diagonal-shimmer {
+  0% {
+    background-position: -1000% -1000%;
+  }
+  100% {
+    background-position: 1000% 1000%;
+  }
+}
+
+.animate-diagonal-shimmer {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  animation: diagonal-shimmer 3s ease-in-out infinite;
+}
