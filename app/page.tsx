@@ -266,9 +266,15 @@ export default function LandingPage() {
 
       {/* FAQ Section */}
       <section id="faq" className="w-full max-w-3xl mx-auto mb-24 px-6">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-12 bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-500 bg-clip-text text-transparent animate-pulse">
+        <motion.h2
+          className="text-3xl sm:text-4xl font-extrabold text-center mb-12 bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-500 bg-clip-text text-transparent"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true }}
+        >
           💡 Frequently Asked Questions
-        </h2>
+        </motion.h2>
 
         <div className="space-y-4">
           {faqs.map((item, index) => (
