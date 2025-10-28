@@ -107,7 +107,7 @@ export default function LandingPage() {
       {/* 1. HERO + ABOUT YOU SECTION */}
       {/* ========================== */}
       <section className="relative flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
-        {/* Animated Glow Behind OG Image */}
+        {/* Animated Glow */}
         <motion.div
           className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-emerald-500 opacity-20 blur-3xl"
           animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.35, 0.2] }}
@@ -128,7 +128,37 @@ export default function LandingPage() {
           Automate Your Trading. Elevate Your Income.
         </h1>
 
-        {/* Short Story / Bio */}
+        {/* === Video Placeholder (Re-added) === */}
+        <div className="w-full max-w-2xl mb-10 relative z-10">
+          <div className="aspect-video bg-gray-800 rounded-xl flex items-center justify-center border border-gray-700 hover:border-emerald-500 transition-colors cursor-pointer">
+            <div className="flex flex-col items-center justify-center text-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-16 w-16 text-gray-400 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14.752 11.168l-5.197-3.028A1 1 0 008 9.028v5.944a1 1 0 001.555.832l5.197-3.028a1 1 0 000-1.664z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <p className="text-gray-400 text-sm">
+                🎥 Video Placeholder — Your intro video goes here
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* About Text */}
         <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-6 leading-relaxed relative z-10">
           I'm <span className="font-semibold text-emerald-400">Aidan</span>, a
           digital entrepreneur with a background in software engineering and a
@@ -180,9 +210,7 @@ export default function LandingPage() {
         <p className="text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed text-base sm:text-lg">
           Unlike most trading groups that broadcast signals and vanish, PipVault
           is a thriving ecosystem of verified results, real mentorship, and a
-          team of 7–8 figure earners who care about your growth. We combine
-          trading signals with mindset and lifestyle coaching — and soon, a
-          completely free auto trader to mirror trades hands-free.
+          team of 7–8 figure earners who care about your growth.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
@@ -201,7 +229,7 @@ export default function LandingPage() {
             },
             {
               title: "💻 Automation Ready",
-              desc: "Our in-development auto trader will let you copy trades automatically for free.",
+              desc: "Our in-development auto trader lets you copy trades automatically for free.",
             },
             {
               title: "🌍 Global Network",
@@ -212,22 +240,30 @@ export default function LandingPage() {
               desc: "Trade, partner, or both — every path leads to personal and financial growth.",
             },
           ].map((item, i) => (
-            <Card key={i} className="bg-gray-900 border border-gray-800 shadow-lg">
-              <CardContent className="p-6">
-                <h3 className="text-emerald-400 font-semibold mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-300 text-sm sm:text-base">
-                  {item.desc}
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-gray-900 border border-gray-800 shadow-lg hover:border-emerald-500 transition">
+                <CardContent className="p-6">
+                  <h3 className="text-emerald-400 font-semibold mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm sm:text-base">
+                    {item.desc}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </motion.section>
 
       {/* ========================== */}
-      {/* 3. RESULTS / CLIENT SHOWCASE */}
+      {/* 3. RESULTS SECTION */}
       {/* ========================== */}
       <motion.section
         className="py-20 px-6 md:px-20 bg-gradient-to-b from-gray-950 to-black text-center overflow-hidden"
@@ -240,12 +276,14 @@ export default function LandingPage() {
         </h2>
         <p className="text-gray-300 max-w-3xl mx-auto mb-10 text-base sm:text-lg leading-relaxed">
           Proof over promises — here’s a look at some of the verified profits
-          shared by our community members. Each one represents growth,
-          discipline, and the power of our system.
+          shared by our community members.
         </p>
 
-        {/* Screenshot Carousel Placeholder */}
-        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+        <motion.div
+          className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
+          whileInView={{ x: [100, 0] }}
+          transition={{ duration: 1 }}
+        >
           {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
@@ -254,11 +292,11 @@ export default function LandingPage() {
               transition={{ duration: 0.3 }}
             >
               Screenshot Placeholder {i + 1}
-              {/* Replace with your image:
-                  <img src="/results/result1.png" alt="Client result 1" className="rounded-xl object-cover w-full h-full" /> */}
+              {/* Replace with actual image e.g.
+              <img src="/results/result1.png" className="w-full h-full object-cover rounded-xl" /> */}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
         <p className="text-gray-500 text-sm mt-4 italic">
           (Replace placeholders with your 8 client profit screenshots)
         </p>
@@ -388,43 +426,7 @@ export default function LandingPage() {
       </section>
 
       {/* ========================== */}
-      {/* 7. TESTIMONIALS */}
-      {/* ========================== */}
-      <section className="py-20 px-6 md:px-20 bg-black text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
-          💬 What Our Members Say
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {[
-            {
-              name: "James T.",
-              text: "PipVault completely changed how I approach trading. The mindset and support are unmatched.",
-            },
-            {
-              name: "Sophie M.",
-              text: "Joined for the signals, stayed for the community. I've learned more here in 2 months than in 2 years alone.",
-            },
-            {
-              name: "Liam R.",
-              text: "The partnership program gave me financial freedom — the system truly works if you follow it.",
-            },
-          ].map((t, i) => (
-            <Card key={i} className="bg-gray-900 border border-gray-800 text-left shadow-lg">
-              <CardContent className="p-6">
-                <p className="text-gray-300 mb-4 italic text-sm sm:text-base">
-                  "{t.text}"
-                </p>
-                <p className="text-emerald-400 font-semibold text-sm sm:text-base">
-                  — {t.name}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* ========================== */}
-      {/* 8. FOOTER + FLOATING CTA */}
+      {/* FOOTER + CTA */}
       {/* ========================== */}
       <footer className="py-8 text-center text-gray-500 text-sm bg-gray-950">
         © {new Date().getFullYear()} PipVault. All rights reserved.
@@ -439,7 +441,6 @@ export default function LandingPage() {
         Join Discord 💬
       </a>
 
-      {/* TYPEFORM MODAL */}
       <TypeformModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
