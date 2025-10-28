@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { TypeformModal } from "@/components/TypeformModal";
 
-// Accordion-style FAQ item
 function FAQItem({
   question,
   answer,
@@ -59,38 +58,42 @@ function FAQItem({
 
 export default function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+
+  const toggleFAQ = (i: number) => {
+    setOpenFAQ(openFAQ === i ? null : i);
+  };
 
   const faqs = [
     {
+      question: "How do I start and what is needed?",
+      answer:
+        "Joining is simple and completely free. Just click the 'Join Discord' button at the top of the page, and you’ll be guided through setup. You’ll only need your own trading funds to get started — no sign-up fees or contracts.",
+    },
+    {
       question: "What if I know nothing about trading?",
       answer:
-        "That’s completely fine! Our program is beginner-friendly and provides full training materials, guidance, and community support to help you learn everything from the ground up.",
+        "That’s perfectly fine! PipVault was designed for beginners as much as advanced traders. You’ll receive educational resources, trade breakdowns, and community mentorship to help you learn step-by-step at your own pace.",
     },
     {
       question: "Why is it free?",
       answer:
-        "Our broker partnership and sponsors cover the costs for us, so you don’t have to. Vantage (our official partner) is an award-winning trading platform that funds member access to our community. As long as you trade through Vantage with us, our education, support, and resources are completely free — making it a no-brainer.",
-    },
-    {
-      question: "How do I start and what is needed?",
-      answer:
-        "Joining is simple — just click the Discord invite link at the top of the page to get started. It’s completely free to join our community, and the only funds you’ll ever need are your own trading funds when you’re ready to start trading live.",
+        "Our broker partnership and sponsors cover all our operational costs, so you don’t have to. Vantage, our official partner, is an award-winning trading platform that funds your access to the PipVault server. As long as you trade with us there, everything remains 100% free — making it a complete no-brainer.",
     },
     {
       question: "How much money do I need to start?",
       answer:
-        "Vantage has a minimum deposit of £50 to open a live trading account, but we generally recommend starting with at least £300 to make proper use of trade opportunities and risk management. Ultimately, the amount you start with is completely up to you.",
+        "Vantage has a minimum deposit of just £50, but we recommend starting with at least £300 for better flexibility and growth potential. You’re always in control of your funds, and how much you start with is entirely up to you.",
     },
     {
-      question: "What is the IB/Partner Program and how does it work?",
+      question: "What are the benefits of becoming a PipVault Partner?",
       answer:
-        "The IB (Introducing Broker) or Partner Program is an opportunity to build genuine long-term passive income by partnering directly with PipVault. As an IB, you’ll earn substantial commissions for every trader you refer through your link — and because everything is automated on our end, your only focus is growing your personal brand and community. Many of our partners have scaled their referrals into 4–5 figure monthly incomes simply by promoting PipVault authentically through their social platforms.",
+        "Our partners gain access to one of the most lucrative affiliate-style systems in trading. You’ll earn substantial commissions for every active client you bring in, with some members scaling to five figures per month in passive income. All you have to do is promote your personal brand — we handle the backend, mentorship, and automation.",
     },
     {
       question: "Can I trade and also become a Partner?",
       answer:
-        "Absolutely — many of our members start as traders and naturally transition into partners once they see results. You can trade for your own growth while building a passive income stream by simply sharing your journey with others.",
+        "Absolutely — many of our members start as traders and transition into partners once they see results. You can trade for your own growth while building a second stream of income by simply sharing your journey with others.",
     },
   ];
 
@@ -98,6 +101,7 @@ export default function LandingPage() {
     <main className="bg-black text-white min-h-screen flex flex-col font-sans scroll-smooth">
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
+        {/* Animated Glow Behind OG Image */}
         <motion.div
           className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-emerald-500 opacity-20 blur-3xl"
           animate={{
@@ -111,6 +115,7 @@ export default function LandingPage() {
           }}
         />
 
+        {/* OG Image */}
         <motion.img
           src="/og-image.png"
           alt="PipVault Branding"
@@ -123,11 +128,12 @@ export default function LandingPage() {
           }}
         />
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4 relative z-10">
-          PipVault:{" "}
-          <span className="text-emerald-400">Your Path to Prosperity</span>
+        {/* Title and tagline */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
+          Automate Your Trading. Elevate Your Income.
         </h1>
 
+        {/* Video Placeholder Section */}
         <div className="w-full max-w-2xl mb-12">
           <div className="relative aspect-video bg-gray-800 rounded-xl flex items-center justify-center border border-gray-700 hover:border-emerald-500 transition-colors cursor-pointer">
             <div className="flex flex-col items-center justify-center text-center">
@@ -158,14 +164,15 @@ export default function LandingPage() {
         </div>
 
         <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-6 leading-relaxed relative z-10">
-          I'm <span className="font-semibold text-emerald-400">Aidan</span>, a founder of PipVault — a
-          community built to help traders, entrepreneurs, and creators thrive
-          through mindset, markets, and mentorship. What started as a small
-          signals group is now an ecosystem powered by automation, real support
-          teams, and our trusted broker partnership with{" "}
+          I'm <span className="font-semibold text-emerald-400">Aidan</span>,
+          founder of PipVault — a community built to help traders, entrepreneurs,
+          and creators thrive through mindset, markets, and mentorship. What
+          started as a small signals group is now an ecosystem powered by
+          automation, real support teams, and our trusted broker partnership with{" "}
           <span className="font-semibold text-emerald-400">Vantage</span>.
         </p>
 
+        {/* CTA */}
         <motion.p
           className="text-lg font-semibold text-emerald-400 mt-6 mb-3 animate-bounce relative z-10"
           initial={{ opacity: 0 }}
@@ -185,13 +192,19 @@ export default function LandingPage() {
         </a>
 
         {/* Social Proof */}
-        <p className="text-gray-400 mt-3 text-sm">
-          Over <span className="text-emerald-400 font-semibold">100+</span> traders joined this month.
+        <p className="text-gray-400 mt-4 text-sm">
+          💬 Over <span className="text-emerald-400 font-semibold">1,200+</span>{" "}
+          traders joined this month
         </p>
       </section>
 
       {/* Copy Trading Section */}
-      <section className="py-20 px-6 md:px-20 bg-gray-950 text-center">
+      <motion.section
+        className="py-20 px-6 md:px-20 bg-gray-950 text-center"
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 50 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
           🚀 How to Start Copy Trading Now
         </h2>
@@ -215,43 +228,26 @@ export default function LandingPage() {
         <p className="text-gray-400 mb-10 text-sm">
           ❌ No setup costs • ❌ No monthly fees • ❌ No contracts ever
         </p>
-
-        <ol className="text-gray-300 max-w-2xl mx-auto space-y-2 text-left text-sm sm:text-base mb-10">
-          <li>1️⃣ Click the Discord button above to begin setup</li>
-          <li>2️⃣ Follow instructions in our support chat</li>
-          <li>3️⃣ Once verified, join our VIP Group</li>
-        </ol>
-
-        <p className="text-gray-500 italic mb-10 text-xs sm:text-sm">
-          (This is NOT financial advice. Past profits do not guarantee future
-          results.)
-        </p>
-      </section>
+      </motion.section>
 
       {/* Partner / IB Section */}
-      <section className="py-20 px-6 md:px-20 bg-gradient-to-b from-gray-950 to-black text-center">
+      <motion.section
+        className="py-20 px-6 md:px-20 bg-gradient-to-b from-gray-950 to-black text-center"
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 50 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
           👑 Become a PipVault Partner
         </h2>
-
-        {/* Urgency Note */}
         <p className="text-emerald-400 text-sm mb-4 italic">
           🔥 Spots are limited — next intake closes soon.
         </p>
-
         <p className="text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed text-base sm:text-lg">
           Our plug-and-play business model gives you a ready-made system to earn
           commissions for referring traders. The entire backend — onboarding,
           automation, and support — is handled by our internal team.
         </p>
-
-        <ul className="text-gray-300 max-w-2xl mx-auto text-left space-y-3 mb-10 text-sm sm:text-base">
-          <li>💼 Automated backend systems & support</li>
-          <li>🎙️ Access to a podcast studio in Marbella</li>
-          <li>🏝️ Paid luxury content retreats</li>
-          <li>💰 Commission per verified trader</li>
-          <li>🧠 Mentorship from 7–8 figure earners</li>
-        </ul>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto mb-10 text-left">
           <div>
@@ -259,9 +255,17 @@ export default function LandingPage() {
               What We Provide:
             </h3>
             <ul className="text-gray-300 space-y-2 text-sm sm:text-base">
-              <li>• Done-for-you <span className="text-emerald-400">Discord Group Setup</span></li>
-              <li>• Daily Content Posted (Trading wins, results, success stories)</li>
-              <li>• Step-by-Step <span className="text-emerald-400">Growth Guide</span></li>
+              <li>
+                • Done-for-you{" "}
+                <span className="text-emerald-400">Discord Group Setup</span>
+              </li>
+              <li>
+                • Daily Content Posted (Trading wins, results, success stories)
+              </li>
+              <li>
+                • Step-by-Step{" "}
+                <span className="text-emerald-400">Growth Guide</span>
+              </li>
               <li>• Mentorship on Building Long-Term Passive Income</li>
             </ul>
           </div>
@@ -271,10 +275,15 @@ export default function LandingPage() {
               Your Role:
             </h3>
             <ul className="text-gray-300 space-y-2 text-sm sm:text-base">
-              <li>• Stay <span className="text-emerald-400">authentic</span></li>
+              <li>• Stay authentic</li>
               <li>• Post your lifestyle and daily updates</li>
-              <li>• Invite your audience to our pre-made Discord community</li>
-              <li>• Let the system and results <span className="text-emerald-400">do the talking</span></li>
+              <li>
+                • Invite your audience to our pre-made Discord community
+              </li>
+              <li>
+                • Let the system and results{" "}
+                <span className="text-emerald-400">do the talking</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -285,31 +294,38 @@ export default function LandingPage() {
         >
           💼 Apply to Become a Partner
         </Button>
-      </section>
+
+        <p className="text-emerald-400 text-sm mt-4">
+          No experience needed — we’ll train you personally.
+        </p>
+      </motion.section>
 
       {/* FAQ Section */}
-      <section id="faq" className="w-full max-w-3xl mx-auto mb-24 px-6">
-        <motion.h2
-          className="text-3xl sm:text-4xl font-extrabold text-center mb-12 bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-500 bg-clip-text text-transparent"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          💡 Frequently Asked Questions
-        </motion.h2>
-
-        <div className="space-y-4">
-          {faqs.map((item, index) => (
+      <section className="py-20 px-6 md:px-20 bg-gray-950 text-center">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-emerald-400">
+          ❓ Frequently Asked Questions
+        </h2>
+        <div className="max-w-3xl mx-auto space-y-4">
+          {faqs.map((faq, i) => (
             <FAQItem
-              key={index}
-              question={item.question}
-              answer={item.answer}
-              isOpen={openIndex === index}
-              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              key={i}
+              question={faq.question}
+              answer={faq.answer}
+              isOpen={openFAQ === i}
+              onClick={() => toggleFAQ(i)}
             />
           ))}
         </div>
+        <p className="text-gray-400 mt-8 text-sm italic">
+          Still have questions? Jump in the{" "}
+          <a
+            href="https://discord.gg/3EAgVbYhEz"
+            className="text-emerald-400 underline hover:text-emerald-300"
+          >
+            Discord
+          </a>{" "}
+          — our team replies fast.
+        </p>
       </section>
 
       {/* Testimonials Section */}
@@ -359,7 +375,7 @@ export default function LandingPage() {
         href="https://discord.gg/3EAgVbYhEz"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-5 py-3 rounded-full shadow-lg animate-pulse z-50"
+        className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-5 py-3 rounded-full shadow-2xl hover:shadow-emerald-400/30 transition-all duration-300 z-50"
       >
         Join Discord 💬
       </a>
