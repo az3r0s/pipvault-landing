@@ -234,12 +234,12 @@ export default function LandingPage() {
             {
               question: "Why is it free?",
               answer:
-                "Our broker partnership and sponsors cover the costs for us, so you don’t have to. Vantage (our official partner) is an award-winning trading platform that funds member access to our community. As long as you trade through Vantage with us, our education, support, and resources are completely free — making it a no-brainer.",
+                "Our broker partnership and sponsors cover the costs for us, so you don’t have to. Vantage (our official partner) is an award-winning trading platform that funds member access to our community. As long as you trade through Vantage with us, our education, support, and resources are completely free - making it a no-brainer.",
             },
             {
               question: "How do I start and what is needed?",
               answer:
-                "Joining is simple — just click the Discord invite link at the top of the page to get started. It’s completely free to join our community, and the only funds you’ll ever need are your own trading funds when you’re ready to start trading live.",
+                "Joining is simple - just click the Discord invite link at the top of the page to get started. It’s completely free to join our community, and the only funds you’ll ever need are your own trading funds when you’re ready to start trading live.",
             },
             {
               question: "How much money do I need to start?",
@@ -249,7 +249,7 @@ export default function LandingPage() {
             {
               question: "What is the IB/Partner Program and how does it work?",
               answer:
-                "The IB (Introducing Broker) or Partner Program lets members earn commissions by referring new traders to Vantage through PipVault. You’ll gain access to exclusive marketing resources, partner training, and direct support from our team to help you build your own passive income stream through trading referrals.",
+                "The IB (Introducing Broker) or Partner Program is an opportunity to build genuine long-term passive income by partnering directly with PipVault. As an IB, you’ll earn substantial commissions for every trader you refer through your link - and because everything is automated on our end, your only focus is growing your personal brand and community. Many of our partners have scaled their referrals into 4–5 figure monthly incomes simply by promoting PipVault authentically through their social platforms.",
             },
           ].map((item, index) => (
             <FAQItem key={index} question={item.question} answer={item.answer} />
