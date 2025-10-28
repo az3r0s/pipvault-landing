@@ -3,6 +3,7 @@ import * as React from "react";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary";
   size?: "sm" | "lg";
+  asChild?: boolean;
 }
 
 export function Button({ variant = "primary", size = "sm", className = "", asChild, ...props }: ButtonProps) {
