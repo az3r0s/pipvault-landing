@@ -31,7 +31,13 @@ function FAQItem({
         className="w-full flex justify-between items-center p-5 text-left hover:bg-gray-900 transition-colors"
       >
         <span className="font-semibold text-gray-100 text-lg">{question}</span>
-        <span className="text-emerald-400 text-2xl">{isOpen ? "−" : "+"}</span>
+        <motion.span
+          className="text-emerald-400 text-2xl inline-block"
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+        >
+          {isOpen ? "−" : "+"}
+        </motion.span>
       </button>
       <AnimatePresence initial={false} mode="sync">
         {isOpen && (
@@ -80,6 +86,11 @@ export default function LandingPage() {
       question: "What is the IB/Partner Program and how does it work?",
       answer:
         "The IB (Introducing Broker) or Partner Program is an opportunity to build genuine long-term passive income by partnering directly with PipVault. As an IB, you’ll earn substantial commissions for every trader you refer through your link — and because everything is automated on our end, your only focus is growing your personal brand and community. Many of our partners have scaled their referrals into 4–5 figure monthly incomes simply by promoting PipVault authentically through their social platforms.",
+    },
+    {
+      question: "Can I trade and also become a Partner?",
+      answer:
+        "Absolutely — many of our members start as traders and naturally transition into partners once they see results. You can trade for your own growth while building a passive income stream by simply sharing your journey with others.",
     },
   ];
 
@@ -172,6 +183,11 @@ export default function LandingPage() {
         >
           Join Our Discord Community
         </a>
+
+        {/* Social Proof */}
+        <p className="text-gray-400 mt-3 text-sm">
+          Over <span className="text-emerald-400 font-semibold">1,200+</span> traders joined this month.
+        </p>
       </section>
 
       {/* Copy Trading Section */}
@@ -217,6 +233,12 @@ export default function LandingPage() {
         <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
           👑 Become a PipVault Partner
         </h2>
+
+        {/* Urgency Note */}
+        <p className="text-emerald-400 text-sm mb-4 italic">
+          🔥 Spots are limited — next intake closes soon.
+        </p>
+
         <p className="text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed text-base sm:text-lg">
           Our plug-and-play business model gives you a ready-made system to earn
           commissions for referring traders. The entire backend — onboarding,
@@ -327,10 +349,22 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="py-8 text-center text-gray-500 text-sm bg-gray-950">
         © {new Date().getFullYear()} PipVault. All rights reserved.
       </footer>
 
+      {/* Floating Discord Button */}
+      <a
+        href="https://discord.gg/3EAgVbYhEz"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-5 py-3 rounded-full shadow-lg animate-pulse z-50"
+      >
+        Join Discord 💬
+      </a>
+
+      {/* Typeform Modal */}
       <TypeformModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
