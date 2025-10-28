@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { TypeformModal } from "@/components/TypeformModal";
 
+/* FAQ Component */
 function FAQItem({
   question,
   answer,
@@ -56,6 +57,7 @@ function FAQItem({
   );
 }
 
+/* === Landing Page === */
 export default function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -64,6 +66,7 @@ export default function LandingPage() {
     setOpenFAQ(openFAQ === i ? null : i);
   };
 
+  /* FAQ Data */
   const faqs = [
     {
       question: "How do I start and what is needed?",
@@ -99,77 +102,41 @@ export default function LandingPage() {
 
   return (
     <main className="bg-black text-white min-h-screen flex flex-col font-sans scroll-smooth">
-      {/* Hero Section */}
+
+      {/* ========================== */}
+      {/* 1. HERO + ABOUT YOU SECTION */}
+      {/* ========================== */}
       <section className="relative flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
         {/* Animated Glow Behind OG Image */}
         <motion.div
           className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-emerald-500 opacity-20 blur-3xl"
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.2, 0.35, 0.2],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.35, 0.2] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* OG Image */}
+        {/* Branding Image */}
         <motion.img
           src="/og-image.png"
           alt="PipVault Branding"
           className="relative z-10 w-48 sm:w-60 md:w-72 mb-8 rounded-2xl shadow-2xl border border-gray-800"
           animate={{ scale: [1, 1.02, 1] }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Title and tagline */}
+        {/* Title */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
           Automate Your Trading. Elevate Your Income.
         </h1>
 
-        {/* Video Placeholder Section */}
-        <div className="w-full max-w-2xl mb-12">
-          <div className="relative aspect-video bg-gray-800 rounded-xl flex items-center justify-center border border-gray-700 hover:border-emerald-500 transition-colors cursor-pointer">
-            <div className="flex flex-col items-center justify-center text-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-16 w-16 text-gray-400 mb-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M14.752 11.168l-5.197-3.028A1 1 0 008 9.028v5.944a1 1 0 001.555.832l5.197-3.028a1 1 0 000-1.664z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <p className="text-gray-400">
-                🎥 Video Placeholder — Your introduction video goes here
-              </p>
-            </div>
-          </div>
-        </div>
-
+        {/* Short Story / Bio */}
         <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-6 leading-relaxed relative z-10">
-          I'm <span className="font-semibold text-emerald-400">Aidan</span>,
-          founder of PipVault — a community built to help traders, entrepreneurs,
-          and creators thrive through mindset, markets, and mentorship. What
-          started as a small signals group is now an ecosystem powered by
-          automation, real support teams, and our trusted broker partnership with{" "}
-          <span className="font-semibold text-emerald-400">Vantage</span>.
+          I'm <span className="font-semibold text-emerald-400">Aidan</span>, a
+          digital entrepreneur with a background in software engineering and a
+          passion for trading. After multiple ventures that didn’t work out, I
+          found a system that’s profitable, scalable, and accessible — and I’m
+          on a mission to share it. Through PipVault, I mentor traders,
+          entrepreneurs, and creators to master markets, mindset, and
+          automation.
         </p>
 
         {/* CTA */}
@@ -191,14 +158,115 @@ export default function LandingPage() {
           Join Our Discord Community
         </a>
 
-        {/* Social Proof */}
         <p className="text-gray-400 mt-4 text-sm">
-          💬 Over <span className="text-emerald-400 font-semibold">100+</span>{" "}
-          traders joined this month
+          💬 Over{" "}
+          <span className="text-emerald-400 font-semibold">100+</span> traders
+          joined this month
         </p>
       </section>
 
-      {/* Copy Trading Section */}
+      {/* ========================== */}
+      {/* 2. WHY PIPVAULT SECTION */}
+      {/* ========================== */}
+      <motion.section
+        className="py-20 px-6 md:px-20 bg-gray-950 text-center"
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 50 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
+          ⚡ Why Choose PipVault
+        </h2>
+        <p className="text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed text-base sm:text-lg">
+          Unlike most trading groups that broadcast signals and vanish, PipVault
+          is a thriving ecosystem of verified results, real mentorship, and a
+          team of 7–8 figure earners who care about your growth. We combine
+          trading signals with mindset and lifestyle coaching — and soon, a
+          completely free auto trader to mirror trades hands-free.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+          {[
+            {
+              title: "✅ Verified Results",
+              desc: "Transparent performance and live-tracked trades — no fake screenshots or hidden losses.",
+            },
+            {
+              title: "🧠 Real Mentorship",
+              desc: "Guidance from seasoned traders and entrepreneurs focused on mindset, strategy, and growth.",
+            },
+            {
+              title: "🤝 True Community",
+              desc: "A collaborative hub — not a one-way signal feed. Every member is valued and supported.",
+            },
+            {
+              title: "💻 Automation Ready",
+              desc: "Our in-development auto trader will let you copy trades automatically for free.",
+            },
+            {
+              title: "🌍 Global Network",
+              desc: "Join traders and partners worldwide scaling their passive income through PipVault.",
+            },
+            {
+              title: "📈 Scalable Opportunity",
+              desc: "Trade, partner, or both — every path leads to personal and financial growth.",
+            },
+          ].map((item, i) => (
+            <Card key={i} className="bg-gray-900 border border-gray-800 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-emerald-400 font-semibold mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-300 text-sm sm:text-base">
+                  {item.desc}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* ========================== */}
+      {/* 3. RESULTS / CLIENT SHOWCASE */}
+      {/* ========================== */}
+      <motion.section
+        className="py-20 px-6 md:px-20 bg-gradient-to-b from-gray-950 to-black text-center overflow-hidden"
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 50 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
+          💹 Real Results. Real Traders.
+        </h2>
+        <p className="text-gray-300 max-w-3xl mx-auto mb-10 text-base sm:text-lg leading-relaxed">
+          Proof over promises — here’s a look at some of the verified profits
+          shared by our community members. Each one represents growth,
+          discipline, and the power of our system.
+        </p>
+
+        {/* Screenshot Carousel Placeholder */}
+        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm snap-center shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              Screenshot Placeholder {i + 1}
+              {/* Replace with your image:
+                  <img src="/results/result1.png" alt="Client result 1" className="rounded-xl object-cover w-full h-full" /> */}
+            </motion.div>
+          ))}
+        </div>
+        <p className="text-gray-500 text-sm mt-4 italic">
+          (Replace placeholders with your 8 client profit screenshots)
+        </p>
+      </motion.section>
+
+      {/* ========================== */}
+      {/* 4. HOW TO START COPY TRADING */}
+      {/* ========================== */}
       <motion.section
         className="py-20 px-6 md:px-20 bg-gray-950 text-center"
         whileInView={{ opacity: 1, y: 0 }}
@@ -230,7 +298,9 @@ export default function LandingPage() {
         </p>
       </motion.section>
 
-      {/* Partner / IB Section */}
+      {/* ========================== */}
+      {/* 5. PARTNER PROGRAM */}
+      {/* ========================== */}
       <motion.section
         className="py-20 px-6 md:px-20 bg-gradient-to-b from-gray-950 to-black text-center"
         whileInView={{ opacity: 1, y: 0 }}
@@ -255,17 +325,9 @@ export default function LandingPage() {
               What We Provide:
             </h3>
             <ul className="text-gray-300 space-y-2 text-sm sm:text-base">
-              <li>
-                • Done-for-you{" "}
-                <span className="text-emerald-400">Discord Group Setup</span>
-              </li>
-              <li>
-                • Daily Content Posted (Trading wins, results, success stories)
-              </li>
-              <li>
-                • Step-by-Step{" "}
-                <span className="text-emerald-400">Growth Guide</span>
-              </li>
+              <li>• Done-for-you <span className="text-emerald-400">Discord Group Setup</span></li>
+              <li>• Daily Content Posted (Trading wins, results, success stories)</li>
+              <li>• Step-by-Step <span className="text-emerald-400">Growth Guide</span></li>
               <li>• Mentorship on Building Long-Term Passive Income</li>
             </ul>
           </div>
@@ -277,13 +339,8 @@ export default function LandingPage() {
             <ul className="text-gray-300 space-y-2 text-sm sm:text-base">
               <li>• Stay authentic</li>
               <li>• Post your lifestyle and daily updates</li>
-              <li>
-                • Invite your audience to our pre-made Discord community
-              </li>
-              <li>
-                • Let the system and results{" "}
-                <span className="text-emerald-400">do the talking</span>
-              </li>
+              <li>• Invite your audience to our pre-made Discord community</li>
+              <li>• Let the system and results <span className="text-emerald-400">do the talking</span></li>
             </ul>
           </div>
         </div>
@@ -300,7 +357,9 @@ export default function LandingPage() {
         </p>
       </motion.section>
 
-      {/* FAQ Section */}
+      {/* ========================== */}
+      {/* 6. FAQ SECTION */}
+      {/* ========================== */}
       <section className="py-20 px-6 md:px-20 bg-gray-950 text-center">
         <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-emerald-400">
           ❓ Frequently Asked Questions
@@ -328,7 +387,9 @@ export default function LandingPage() {
         </p>
       </section>
 
-      {/* Testimonials Section */}
+      {/* ========================== */}
+      {/* 7. TESTIMONIALS */}
+      {/* ========================== */}
       <section className="py-20 px-6 md:px-20 bg-black text-center">
         <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
           💬 What Our Members Say
@@ -348,10 +409,7 @@ export default function LandingPage() {
               text: "The partnership program gave me financial freedom — the system truly works if you follow it.",
             },
           ].map((t, i) => (
-            <Card
-              key={i}
-              className="bg-gray-900 border border-gray-800 text-left shadow-lg"
-            >
+            <Card key={i} className="bg-gray-900 border border-gray-800 text-left shadow-lg">
               <CardContent className="p-6">
                 <p className="text-gray-300 mb-4 italic text-sm sm:text-base">
                   "{t.text}"
@@ -365,12 +423,13 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ========================== */}
+      {/* 8. FOOTER + FLOATING CTA */}
+      {/* ========================== */}
       <footer className="py-8 text-center text-gray-500 text-sm bg-gray-950">
         © {new Date().getFullYear()} PipVault. All rights reserved.
       </footer>
 
-      {/* Floating Discord Button */}
       <a
         href="https://discord.gg/3EAgVbYhEz"
         target="_blank"
@@ -380,7 +439,7 @@ export default function LandingPage() {
         Join Discord 💬
       </a>
 
-      {/* Typeform Modal */}
+      {/* TYPEFORM MODAL */}
       <TypeformModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
