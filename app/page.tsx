@@ -6,6 +6,28 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { TypeformModal } from "@/components/TypeformModal";
 
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div
+      className="border border-gray-800 rounded-xl bg-gray-900/50 overflow-hidden transition-all duration-300"
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex justify-between items-center p-5 text-left hover:bg-gray-900 transition-colors"
+      >
+        <span className="font-semibold text-gray-100 text-lg">{question}</span>
+        <span className="text-emerald-400 text-2xl">{isOpen ? "−" : "+"}</span>
+      </button>
+      {isOpen && (
+        <div className="px-5 pb-5 text-gray-300 text-sm sm:text-base border-t border-gray-800">
+          {answer}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -195,6 +217,44 @@ export default function LandingPage() {
         >
           💼 Apply to Become a Partner
         </Button>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="w-full max-w-3xl mx-auto mb-24 px-6">
+        <h2 className="text-3xl font-bold text-center mb-10 text-white">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {[
+            {
+              question: "What if I know nothing about trading?",
+              answer:
+                "That’s completely fine! Our program is beginner-friendly and provides full training materials, guidance, and community support to help you learn everything from the ground up.",
+            },
+            {
+              question: "Why is it free?",
+              answer:
+                "Our broker partnership and sponsors cover the costs for us, so you don’t have to. Vantage (our official partner) is an award-winning trading platform that funds member access to our community. As long as you trade through Vantage with us, our education, support, and resources are completely free — making it a no-brainer.",
+            },
+            {
+              question: "How do I start and what is needed?",
+              answer:
+                "Joining is simple — just click the Discord invite link at the top of the page to get started. It’s completely free to join our community, and the only funds you’ll ever need are your own trading funds when you’re ready to start trading live.",
+            },
+            {
+              question: "How much money do I need to start?",
+              answer:
+                "Vantage has a minimum deposit of £50 to open a live trading account, but we generally recommend starting with at least £300 to make proper use of trade opportunities and risk management. Ultimately, the amount you start with is completely up to you.",
+            },
+            {
+              question: "What is the IB/Partner Program and how does it work?",
+              answer:
+                "The IB (Introducing Broker) or Partner Program lets members earn commissions by referring new traders to Vantage through PipVault. You’ll gain access to exclusive marketing resources, partner training, and direct support from our team to help you build your own passive income stream through trading referrals.",
+            },
+          ].map((item, index) => (
+            <FAQItem key={index} question={item.question} answer={item.answer} />
+          ))}
+        </div>
       </section>
 
       {/* Testimonials Section */}
