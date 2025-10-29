@@ -215,7 +215,6 @@ export default function LandingPage() {
         initial={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {/* Parallax Glow */}
         <motion.div
           className="absolute top-1/2 left-1/2 w-[80%] h-[60%] bg-emerald-500/10 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2"
           animate={{ scale: [1, 1.1, 1] }}
@@ -230,16 +229,15 @@ export default function LandingPage() {
           shared by our community members.
         </p>
 
-        {/* True Infinite Carousel */}
+        {/* True Infinite Carousel (No Snap Version) */}
         <div className="relative overflow-hidden px-6 sm:px-10 md:px-16 lg:px-24 max-w-7xl mx-auto">
-          <div className="carousel-track flex gap-6 animate-scroll">
-            {[...Array(16)].map((_, i) => (
+          <div className="carousel-track flex gap-6 animate-scroll-true">
+            {[...Array(24)].map((_, i) => (
               <div
                 key={i}
                 className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm shadow-lg"
               >
                 Screenshot Placeholder {(i % 8) + 1}
-                {/* Replace with: <img src={`/results/result${(i % 8) + 1}.png`} alt={`Result ${(i % 8) + 1}`} className="w-full h-full rounded-xl object-cover" /> */}
               </div>
             ))}
           </div>
@@ -384,7 +382,19 @@ export default function LandingPage() {
       </footer>
 
       {/* ========================== */}
-      {/* 8. TYPEFORM MODAL */}
+      {/* 8. FLOATING CTA BUTTON */}
+      {/* ========================== */}
+      <a
+        href="https://discord.gg/3EAgVbYhEz"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3 rounded-full shadow-lg transition z-50"
+      >
+        💬 Join Discord
+      </a>
+
+      {/* ========================== */}
+      {/* 9. TYPEFORM MODAL */}
       {/* ========================== */}
       <TypeformModal
         isOpen={isModalOpen}

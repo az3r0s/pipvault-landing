@@ -63,20 +63,19 @@ body {
   animation: diagonal-shimmer 3s ease-in-out infinite;
 }
 
-@keyframes scroll {
+@keyframes scroll-true {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-33.3333%);
   }
 }
 
-.animate-scroll {
-  animation: scroll 20s linear infinite;
+.animate-scroll-true {
+  animation: scroll-true 25s linear infinite;
 }
 
-/* Optional: Pause when hovered */
-.animate-scroll:hover {
+.animate-scroll-true:hover {
   animation-play-state: paused;
 }
