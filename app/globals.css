@@ -75,7 +75,7 @@ body {
 /* This makes one full duplicate loop exactly half the track width */
 .marquee-track {
   display: flex;
-  animation: marquee-scroll 30s linear infinite;
+  animation: marquee-scroll 45s linear infinite;
   width: max-content; /* prevents flex shrink causing gaps */
 }
 
