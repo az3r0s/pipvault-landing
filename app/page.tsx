@@ -225,7 +225,7 @@ export default function LandingPage() {
       </motion.section>
 
       {/* ========================== */}
-      {/* 3. RESULTS SECTION */}
+      {/* 3. RESULTS SECTION (Vertical 9:16 Images) */}
       {/* ========================== */}
       <motion.section
         className="relative py-20 px-6 md:px-20 bg-gradient-to-b from-gray-950 to-black text-center overflow-hidden"
@@ -233,7 +233,6 @@ export default function LandingPage() {
         initial={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {/* Parallax Glow */}
         <motion.div
           className="absolute top-1/2 left-1/2 w-[80%] h-[60%] bg-emerald-500/10 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2"
           animate={{ scale: [1, 1.1, 1] }}
@@ -248,44 +247,40 @@ export default function LandingPage() {
           shared by our community members.
         </p>
 
-        {/* === True Seamless Infinite Carousel with Images === */}
+        {/* === True Seamless Infinite Carousel (Portrait Images) === */}
         <div className="relative overflow-hidden px-6 sm:px-10 md:px-16 lg:px-24 max-w-7xl mx-auto">
           <div className="marquee-track flex gap-6">
-            {/* first set */}
             {[...Array(8)].map((_, i) => (
               <div
                 key={`a-${i}`}
-                className="flex-shrink-0 w-72 h-48 rounded-xl border border-gray-700 overflow-hidden shadow-lg"
+                className="flex-shrink-0 w-56 h-[500px] bg-gray-900 rounded-xl border border-gray-700 overflow-hidden shadow-lg flex items-center justify-center"
               >
                 <img
                   src={`/results/result${i + 1}.jpg`}
                   alt={`Trading result ${i + 1}`}
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-contain rounded-xl"
                 />
               </div>
             ))}
-
-            {/* duplicate set */}
             {[...Array(8)].map((_, i) => (
               <div
                 key={`b-${i}`}
-                className="flex-shrink-0 w-72 h-48 rounded-xl border border-gray-700 overflow-hidden shadow-lg"
+                className="flex-shrink-0 w-56 h-[500px] bg-gray-900 rounded-xl border border-gray-700 overflow-hidden shadow-lg flex items-center justify-center"
               >
                 <img
                   src={`/results/result${i + 1}.jpg`}
                   alt={`Trading result ${i + 1}`}
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-contain rounded-xl"
                 />
               </div>
             ))}
           </div>
 
-          {/* Fade edges */}
           <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-black to-transparent pointer-events-none" />
           <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-black to-transparent pointer-events-none" />
         </div>
         <p className="text-gray-500 text-sm mt-4 italic relative z-10">
-          (Your live trading results carousel)
+          (Past performance is not indicative of future results. Trade at your own risk.)
         </p>
       </motion.section>
 
