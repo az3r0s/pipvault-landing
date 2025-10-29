@@ -100,7 +100,7 @@ export default function LandingPage() {
     {
       question: "How much money do I need to start?",
       answer:
-        "Vantage has a minimum deposit of just £50, but we recommend starting with at least £300 for better flexibility and growth potential. You're always in control of your funds, and how much you start with is entirely up to you.",
+        "Vantage has a minimum deposit of just £50, but we require a starting deposit of £300 for entrance to our VIP community. You're always in control of your funds, and how much you choose to start with is entirely up to you above that amount.",
     },
     {
       question: "What are the benefits of becoming a PipVault Partner?",
@@ -136,36 +136,6 @@ export default function LandingPage() {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
           Automate Your Trading. Elevate Your Income.
         </h1>
-
-        {/* === Video Placeholder === */}
-        <div className="w-full max-w-2xl mb-10 relative z-10">
-          <div className="aspect-video bg-gray-800 rounded-xl flex items-center justify-center border border-gray-700 hover:border-emerald-500 transition-colors cursor-pointer">
-            <div className="flex flex-col items-center justify-center text-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-16 w-16 text-gray-400 mb-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M14.752 11.168l-5.197-3.028A1 1 0 008 9.028v5.944a1 1 0 001.555.832l5.197-3.028a1 1 0 000-1.664z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <p className="text-gray-400 text-sm">
-                🎥 Video Placeholder — Your intro video goes here
-              </p>
-            </div>
-          </div>
-        </div>
 
         <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-6 leading-relaxed relative z-10">
           I'm <span className="font-semibold text-emerald-400">Aidan</span>, a
