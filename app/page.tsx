@@ -103,7 +103,7 @@ export default function LandingPage() {
     <main className="bg-black text-white min-h-screen flex flex-col font-sans scroll-smooth">
 
       {/* ========================== */}
-      {/* 1. HERO + ABOUT YOU SECTION */}
+      {/* 1. HERO + ABOUT SECTION */}
       {/* ========================== */}
       <section className="relative flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
         <motion.div
@@ -118,13 +118,13 @@ export default function LandingPage() {
           animate={{ scale: [1, 1.02, 1] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
           Automate Your Trading. Elevate Your Income.
         </h1>
 
         <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-6 leading-relaxed relative z-10">
           I'm <span className="font-semibold text-emerald-400">Aidan</span>, a
-          digital entrepreneur with a background in software engineering and business, and a
+          digital entrepreneur with a background in software engineering and a
           passion for trading. After multiple ventures that didn’t work out, I
           found a system that’s profitable, scalable, and accessible — and I’m
           on a mission to share it. As a founder of PipVault, I mentor traders,
@@ -177,12 +177,30 @@ export default function LandingPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
           {[
-            { title: "✅ Verified Results", desc: "Transparent performance and live-tracked trades — no fake screenshots or hidden losses." },
-            { title: "🧠 Real Mentorship", desc: "Guidance from seasoned traders and entrepreneurs focused on mindset, strategy, and growth." },
-            { title: "🤝 True Community", desc: "A collaborative hub — not a one-way signal feed. Every member is valued and supported." },
-            { title: "💻 Automation Ready", desc: "Our in-development auto trader lets you copy trades automatically for free." },
-            { title: "🌍 Global Network", desc: "Join traders and partners worldwide scaling their passive income through PipVault." },
-            { title: "📈 Scalable Opportunity", desc: "Trade, partner, or both — every path leads to personal and financial growth." },
+            {
+              title: "✅ Verified Results",
+              desc: "Transparent performance and live-tracked trades — no fake screenshots or hidden losses.",
+            },
+            {
+              title: "🧠 Real Mentorship",
+              desc: "Guidance from seasoned traders and entrepreneurs focused on mindset, strategy, and growth.",
+            },
+            {
+              title: "🤝 True Community",
+              desc: "A collaborative hub — not a one-way signal feed. Every member is valued and supported.",
+            },
+            {
+              title: "💻 Automation Ready",
+              desc: "Our in-development auto trader lets you copy trades automatically for free.",
+            },
+            {
+              title: "🌍 Global Network",
+              desc: "Join traders and partners worldwide scaling their passive income through PipVault.",
+            },
+            {
+              title: "📈 Scalable Opportunity",
+              desc: "Trade, partner, or both — every path leads to personal and financial growth.",
+            },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -215,6 +233,7 @@ export default function LandingPage() {
         initial={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
+        {/* Parallax Glow */}
         <motion.div
           className="absolute top-1/2 left-1/2 w-[80%] h-[60%] bg-emerald-500/10 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2"
           animate={{ scale: [1, 1.1, 1] }}
@@ -229,32 +248,44 @@ export default function LandingPage() {
           shared by our community members.
         </p>
 
-        {/* === True Seamless Infinite Carousel === */}
+        {/* === True Seamless Infinite Carousel with Images === */}
         <div className="relative overflow-hidden px-6 sm:px-10 md:px-16 lg:px-24 max-w-7xl mx-auto">
           <div className="marquee-track flex gap-6">
+            {/* first set */}
             {[...Array(8)].map((_, i) => (
               <div
                 key={`a-${i}`}
-                className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm shadow-lg"
+                className="flex-shrink-0 w-72 h-48 rounded-xl border border-gray-700 overflow-hidden shadow-lg"
               >
-                Screenshot {(i % 8) + 1}
+                <img
+                  src={`/results/result${i + 1}.jpg`}
+                  alt={`Trading result ${i + 1}`}
+                  className="w-full h-full object-cover rounded-xl"
+                />
               </div>
             ))}
+
+            {/* duplicate set */}
             {[...Array(8)].map((_, i) => (
               <div
                 key={`b-${i}`}
-                className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm shadow-lg"
+                className="flex-shrink-0 w-72 h-48 rounded-xl border border-gray-700 overflow-hidden shadow-lg"
               >
-                Screenshot {(i % 8) + 1}
+                <img
+                  src={`/results/result${i + 1}.jpg`}
+                  alt={`Trading result ${i + 1}`}
+                  className="w-full h-full object-cover rounded-xl"
+                />
               </div>
             ))}
           </div>
 
+          {/* Fade edges */}
           <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-black to-transparent pointer-events-none" />
           <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-black to-transparent pointer-events-none" />
         </div>
         <p className="text-gray-500 text-sm mt-4 italic relative z-10">
-          (Replace placeholders with your 8 client profit screenshots)
+          (Your live trading results carousel)
         </p>
       </motion.section>
 
@@ -371,7 +402,7 @@ export default function LandingPage() {
       </motion.section>
 
       {/* ========================== */}
-      {/* 7. FOOTER */}
+      {/* 7. FOOTER + FLOATING CTA */}
       {/* ========================== */}
       <footer className="py-10 text-center bg-black border-t border-gray-800 relative">
         <p className="text-gray-500 text-sm mb-2">
@@ -386,7 +417,7 @@ export default function LandingPage() {
           Join our Discord
         </a>
 
-        {/* Floating CTA Discord Button */}
+        {/* Floating Discord CTA */}
         <a
           href="https://discord.gg/3EAgVbYhEz"
           target="_blank"
