@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { TypeformModal } from "@/components/TypeformModal";
 
 /* FAQ Component */
@@ -61,25 +61,10 @@ function FAQItem({
 export default function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-  const controls = useAnimation();
 
   const toggleFAQ = (i: number) => {
     setOpenFAQ(openFAQ === i ? null : i);
   };
-
-  /* Seamless infinite auto-scroll for results carousel */
-  useEffect(() => {
-    const animate = async () => {
-      while (true) {
-        await controls.start({
-          x: ["0%", "-50%"],
-          transition: { duration: 18, ease: "linear" },
-        });
-        controls.set({ x: "0%" }); // instant reset without flicker
-      }
-    };
-    animate();
-  }, [controls]);
 
   const faqs = [
     {
@@ -245,19 +230,19 @@ export default function LandingPage() {
           shared by our community members.
         </p>
 
-        {/* Infinite Padded Auto-scroll Carousel */}
+        {/* True Infinite Carousel */}
         <div className="relative overflow-hidden px-6 sm:px-10 md:px-16 lg:px-24 max-w-7xl mx-auto">
-          <motion.div className="flex gap-6" animate={controls}>
+          <div className="carousel-track flex gap-6 animate-scroll">
             {[...Array(16)].map((_, i) => (
               <div
                 key={i}
                 className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm shadow-lg"
               >
                 Screenshot Placeholder {(i % 8) + 1}
-                {/* Replace with: <img src="/results/result1.png" alt="Result" className="w-full h-full rounded-xl object-cover" /> */}
+                {/* Replace with: <img src={`/results/result${(i % 8) + 1}.png`} alt={`Result ${(i % 8) + 1}`} className="w-full h-full rounded-xl object-cover" /> */}
               </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* Fade edges */}
           <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-black to-transparent pointer-events-none" />

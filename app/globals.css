@@ -62,3 +62,21 @@ body {
   background-size: 200% 200%;
   animation: diagonal-shimmer 3s ease-in-out infinite;
 }
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+/* Optional: Pause when hovered */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
