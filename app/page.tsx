@@ -67,15 +67,15 @@ export default function LandingPage() {
     setOpenFAQ(openFAQ === i ? null : i);
   };
 
-  /* Auto-scroll effect for results carousel */
+  /* Seamless infinite auto-scroll for results carousel */
   useEffect(() => {
     const animate = async () => {
       while (true) {
         await controls.start({
           x: ["0%", "-50%"],
-          transition: { duration: 25, ease: "linear" },
+          transition: { duration: 18, ease: "linear" },
         });
-        await controls.start({ x: "0%", transition: { duration: 0 } });
+        controls.set({ x: "0%" }); // instant reset without flicker
       }
     };
     animate();
@@ -133,7 +133,7 @@ export default function LandingPage() {
           animate={{ scale: [1, 1.02, 1] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8 relative z-10 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
           Automate Your Trading. Elevate Your Income.
         </h1>
 
@@ -192,30 +192,12 @@ export default function LandingPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
           {[
-            {
-              title: "✅ Verified Results",
-              desc: "Transparent performance and live-tracked trades — no fake screenshots or hidden losses.",
-            },
-            {
-              title: "🧠 Real Mentorship",
-              desc: "Guidance from seasoned traders and entrepreneurs focused on mindset, strategy, and growth.",
-            },
-            {
-              title: "🤝 True Community",
-              desc: "A collaborative hub — not a one-way signal feed. Every member is valued and supported.",
-            },
-            {
-              title: "💻 Automation Ready",
-              desc: "Our in-development auto trader lets you copy trades automatically for free.",
-            },
-            {
-              title: "🌍 Global Network",
-              desc: "Join traders and partners worldwide scaling their passive income through PipVault.",
-            },
-            {
-              title: "📈 Scalable Opportunity",
-              desc: "Trade, partner, or both — every path leads to personal and financial growth.",
-            },
+            { title: "✅ Verified Results", desc: "Transparent performance and live-tracked trades — no fake screenshots or hidden losses." },
+            { title: "🧠 Real Mentorship", desc: "Guidance from seasoned traders and entrepreneurs focused on mindset, strategy, and growth." },
+            { title: "🤝 True Community", desc: "A collaborative hub — not a one-way signal feed. Every member is valued and supported." },
+            { title: "💻 Automation Ready", desc: "Our in-development auto trader lets you copy trades automatically for free." },
+            { title: "🌍 Global Network", desc: "Join traders and partners worldwide scaling their passive income through PipVault." },
+            { title: "📈 Scalable Opportunity", desc: "Trade, partner, or both — every path leads to personal and financial growth." },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -263,23 +245,24 @@ export default function LandingPage() {
           shared by our community members.
         </p>
 
-        {/* Auto-scroll Carousel */}
-        <motion.div
-          className="flex gap-6 overflow-hidden max-w-6xl mx-auto relative z-10"
-          animate={controls}
-        >
-          {[...Array(16)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm shadow-lg mx-2"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              Screenshot Placeholder {(i % 8) + 1}
-              {/* Replace with: <img src="/results/result1.png" alt="Result" className="w-full h-full rounded-xl object-cover" /> */}
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Infinite Padded Auto-scroll Carousel */}
+        <div className="relative overflow-hidden px-6 sm:px-10 md:px-16 lg:px-24 max-w-7xl mx-auto">
+          <motion.div className="flex gap-6" animate={controls}>
+            {[...Array(16)].map((_, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm shadow-lg"
+              >
+                Screenshot Placeholder {(i % 8) + 1}
+                {/* Replace with: <img src="/results/result1.png" alt="Result" className="w-full h-full rounded-xl object-cover" /> */}
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-black to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-black to-transparent pointer-events-none" />
+        </div>
 
         <p className="text-gray-500 text-sm mt-4 italic relative z-10">
           (Replace placeholders with your 8 client profit screenshots)
@@ -418,9 +401,9 @@ export default function LandingPage() {
       {/* ========================== */}
       {/* 8. TYPEFORM MODAL */}
       {/* ========================== */}
-      <TypeformModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <TypeformModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
         typeformUrl="https://form.typeform.com/to/XT5ryUFU"
       />
     </main>
