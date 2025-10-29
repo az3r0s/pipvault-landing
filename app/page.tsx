@@ -229,24 +229,30 @@ export default function LandingPage() {
           shared by our community members.
         </p>
 
-        {/* True Infinite Carousel (No Snap Version) */}
+        {/* === True Seamless Infinite Carousel === */}
         <div className="relative overflow-hidden px-6 sm:px-10 md:px-16 lg:px-24 max-w-7xl mx-auto">
-          <div className="carousel-track flex gap-6 animate-scroll-true">
-            {[...Array(24)].map((_, i) => (
+          <div className="marquee-track flex gap-6">
+            {[...Array(8)].map((_, i) => (
               <div
-                key={i}
+                key={`a-${i}`}
                 className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm shadow-lg"
               >
-                Screenshot Placeholder {(i % 8) + 1}
+                Screenshot {(i % 8) + 1}
+              </div>
+            ))}
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={`b-${i}`}
+                className="flex-shrink-0 w-72 h-48 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-400 text-sm shadow-lg"
+              >
+                Screenshot {(i % 8) + 1}
               </div>
             ))}
           </div>
 
-          {/* Fade edges */}
           <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-black to-transparent pointer-events-none" />
           <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-black to-transparent pointer-events-none" />
         </div>
-
         <p className="text-gray-500 text-sm mt-4 italic relative z-10">
           (Replace placeholders with your 8 client profit screenshots)
         </p>
@@ -367,7 +373,7 @@ export default function LandingPage() {
       {/* ========================== */}
       {/* 7. FOOTER */}
       {/* ========================== */}
-      <footer className="py-10 text-center bg-black border-t border-gray-800">
+      <footer className="py-10 text-center bg-black border-t border-gray-800 relative">
         <p className="text-gray-500 text-sm mb-2">
           &copy; {new Date().getFullYear()} PipVault. All Rights Reserved.
         </p>
@@ -379,22 +385,20 @@ export default function LandingPage() {
         >
           Join our Discord
         </a>
+
+        {/* Floating CTA Discord Button */}
+        <a
+          href="https://discord.gg/3EAgVbYhEz"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3 rounded-full shadow-lg transition z-50 animate-bounce"
+        >
+          💬 Join Discord
+        </a>
       </footer>
 
       {/* ========================== */}
-      {/* 8. FLOATING CTA BUTTON */}
-      {/* ========================== */}
-      <a
-        href="https://discord.gg/3EAgVbYhEz"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3 rounded-full shadow-lg transition z-50"
-      >
-        💬 Join Discord
-      </a>
-
-      {/* ========================== */}
-      {/* 9. TYPEFORM MODAL */}
+      {/* 8. TYPEFORM MODAL */}
       {/* ========================== */}
       <TypeformModal
         isOpen={isModalOpen}

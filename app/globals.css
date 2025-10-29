@@ -63,19 +63,22 @@ body {
   animation: diagonal-shimmer 3s ease-in-out infinite;
 }
 
-@keyframes scroll-true {
+@keyframes marquee-scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-33.3333%);
+    transform: translateX(-50%);
   }
 }
 
-.animate-scroll-true {
-  animation: scroll-true 25s linear infinite;
+/* This makes one full duplicate loop exactly half the track width */
+.marquee-track {
+  display: flex;
+  animation: marquee-scroll 30s linear infinite;
+  width: max-content; /* prevents flex shrink causing gaps */
 }
 
-.animate-scroll-true:hover {
+.marquee-track:hover {
   animation-play-state: paused;
 }
