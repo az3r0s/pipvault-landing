@@ -75,12 +75,12 @@ export default function LandingPage() {
     {
       question: "What if I know nothing about trading?",
       answer:
-        "That's perfectly fine! PipVault was designed for beginners as much as advanced traders. You'll receive educational resources, trade breakdowns, and community mentorship to help you learn step-by-step at your own pace.",
+        "That's perfectly fine! The Omnivara Project was designed for beginners as much as advanced traders. You'll receive educational resources, trade breakdowns, and community mentorship to help you learn step-by-step at your own pace.",
     },
     {
       question: "Why is it free?",
       answer:
-        "Our broker partnership and sponsors cover all our operational costs, so you don't have to. Vantage, our official partner, is an award-winning trading platform that funds your access to the PipVault server. As long as you trade with us there, everything remains 100% free — making it a complete no-brainer.",
+        "Our broker partnership and sponsors cover all our operational costs, so you don't have to. Vantage, our official partner, is an award-winning trading platform that funds your access to the Omnivara Project server. As long as you trade with us there, everything remains 100% free — making it a complete no-brainer.",
     },
     {
       question: "How much money do I need to start?",
@@ -88,7 +88,7 @@ export default function LandingPage() {
         "Vantage has a minimum deposit of just £50, but we require a starting deposit of £300 for entrance to our VIP community. You're always in control of your funds, and how much you choose to start with is entirely up to you above that amount.",
     },
     {
-      question: "What are the benefits of becoming a PipVault Partner?",
+      question: "What are the benefits of becoming an Omnivara Project Partner?",
       answer:
         "Our partners gain access to one of the most lucrative affiliate-style systems in trading. You'll earn substantial commissions for every active client you bring in, with some members scaling to five figures per month in passive income. All you have to do is promote your personal brand — we handle the backend, mentorship, and automation.",
     },
@@ -113,7 +113,7 @@ export default function LandingPage() {
         />
         <motion.img
           src="/og-image.png"
-          alt="PipVault Branding"
+          alt="The omnivara Project Branding"
           className="relative z-10 w-48 sm:w-60 md:w-72 mb-8 rounded-2xl shadow-2xl border border-gray-800"
           animate={{ scale: [1, 1.02, 1] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -127,7 +127,7 @@ export default function LandingPage() {
           digital entrepreneur with a background in software engineering and a
           passion for trading. After multiple ventures that didn’t work out, I
           found a system that’s profitable, scalable, and accessible — and I’m
-          on a mission to share it. As a founder of PipVault, I mentor traders,
+          on a mission to share it. As a founder of the Omnivara Project, I mentor traders,
           entrepreneurs, and creators to master markets, mindset, and
           automation.
         </p>
@@ -158,7 +158,7 @@ export default function LandingPage() {
       </section>
 
       {/* ========================== */}
-      {/* 2. WHY PIPVAULT SECTION */}
+      {/* 2. WHY Omnivara SECTION */}
       {/* ========================== */}
       <motion.section
         className="py-20 px-6 md:px-20 bg-gray-950 text-center"
@@ -167,10 +167,10 @@ export default function LandingPage() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
-          ⚡ Why Choose PipVault
+          ⚡ Why Choose The Omnivara Project
         </h2>
         <p className="text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed text-base sm:text-lg">
-          Unlike most trading groups that broadcast signals and vanish, PipVault
+          Unlike most trading groups that broadcast signals and vanish, The Omnivara Project
           is a thriving ecosystem of verified results, real mentorship, and a
           team of 7–8 figure earners who care about your growth.
         </p>
@@ -195,7 +195,7 @@ export default function LandingPage() {
             },
             {
               title: "🌍 Global Network",
-              desc: "Join traders and partners worldwide scaling their passive income through PipVault.",
+              desc: "Join traders and partners worldwide scaling their passive income through The Omnivara Project.",
             },
             {
               title: "📈 Scalable Opportunity",
@@ -299,7 +299,7 @@ export default function LandingPage() {
         <p className="text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed text-base sm:text-lg">
           Join the{" "}
           <span className="text-emerald-400 font-semibold">
-            PipVault FREE VIP Group
+            The Omnivara Project FREE VIP Group
           </span>{" "}
           for daily trades, mindset support, and community mentorship — all
           without fees or contracts.
@@ -328,7 +328,7 @@ export default function LandingPage() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-emerald-400">
-          👑 Become a PipVault Partner
+          👑 Become an Omnivara Project Partner
         </h2>
         <p className="text-emerald-400 text-sm mb-4 italic">
           🔥 Spots are limited — next intake closes soon.
@@ -401,7 +401,7 @@ export default function LandingPage() {
       {/* ========================== */}
       <footer className="py-10 text-center bg-black border-t border-gray-800 relative">
         <p className="text-gray-500 text-sm mb-2">
-          &copy; {new Date().getFullYear()} PipVault. All Rights Reserved.
+          &copy; {new Date().getFullYear()} The Omnivara Project. All Rights Reserved.
         </p>
         <a
           href="https://discord.gg/3EAgVbYhEz"
